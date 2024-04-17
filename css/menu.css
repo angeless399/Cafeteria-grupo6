@@ -1,0 +1,57 @@
+nav {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 3000;
+
+    display: flex;
+    flex-direction: column;
+}
+
+nav label {
+    width: 100%;
+    background-color: var(--color-principal);
+    color: var(--color-secundario);
+    padding: 5px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+nav .btn {   
+    padding: 10px;
+    font-size: 1.5em;  
+}
+
+nav span {
+    font-size: 1.8em;
+}
+
+nav #open-menu {
+    display: none;
+}
+
+nav .marca {
+    font-size: 1.5em;
+}
+
+nav .link {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    background: var(--transparencia);
+    margin-left: -60%;
+    transition: all 0.5s;
+}
+
+nav #open-menu:checked ~ .link{
+    margin-left: 0;
+}
+
+nav .link a {
+    color: var(--color-secundario);
+    text-decoration: none;
+    font-size: 1.2em;
+    padding: 15px;
+    border-top: 1px solid var(--color-secundario);
+}
