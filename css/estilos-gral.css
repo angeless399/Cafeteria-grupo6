@@ -10,12 +10,14 @@
 :root {
     --color-principal: rgb(61, 61, 61);
     --color-secundario: rgb(204, 204, 204);
-    --acento: rgb(0, 128, 0);
+    --acento: rgb(245, 211, 16);
     --transparencia: rgba(61, 61, 61, 0.8);
 }
 
 body {
-    margin-top: 70px; 
+    margin-top: 100px; 
 }
 
-/*menu*/
+h1 {
+    text-align: center;
+}

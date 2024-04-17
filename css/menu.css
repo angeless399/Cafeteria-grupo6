@@ -12,7 +12,8 @@ nav label {
     width: 100%;
     background-color: var(--color-principal);
     color: var(--color-secundario);
-    padding: 5px;
+    border-left: 5px solid var(--acento);
+    padding: 10px;
 
     display: flex;
     flex-direction: row;
@@ -20,11 +21,13 @@ nav label {
 }
 nav .btn {   
     padding: 10px;
-    font-size: 1.5em;  
+    font-size: 1.5em; 
+    cursor: pointer;
 }
 
 nav span {
     font-size: 1.8em;
+    color: var(--acento)
 }
 
 nav #open-menu {
@@ -40,18 +43,52 @@ nav .link {
     display: flex;
     flex-direction: column;
     background: var(--transparencia);
+    border-left: 5px solid var(--acento);
     margin-left: -60%;
     transition: all 0.5s;
+}
+
+
+nav .link a {
+    color: var(--color-secundario);
+    text-decoration: none;
+    font-size: 1.2em;
+    /* margin-left: 15px; */
+    padding: 15px;
+    border-top: 1px solid var(--color-secundario);
 }
 
 nav #open-menu:checked ~ .link{
     margin-left: 0;
 }
 
+@media screen and (min-width: 800px) {
+    nav {
+        flex-direction: row;
+        justify-content: space-between;
+        border-bottom: 5px solid var(--color-secundario);
+    }
+    nav label {
+        border-left: 0;
+    }
+    nav .btn {
+        display: none;
+    }
+    nav .link {
+        flex-direction: row;
+        gap: 20px;
+        text-align: center;
+        width: auto;
+        border-left: 0;
+        background: var(--color-principal);
+    }
+
 nav .link a {
-    color: var(--color-secundario);
-    text-decoration: none;
-    font-size: 1.2em;
-    padding: 15px;
-    border-top: 1px solid var(--color-secundario);
+    border-top: 0;
+}
+
+nav .link a:hover {
+    color: var(--acento);
+    border-bottom: 5px solid var(--acento);
+}
 }
