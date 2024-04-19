@@ -14,7 +14,7 @@ nav label {
     background-color: var(--color-principal);
     color: var(--color-secundario);
     border-left: 5px solid var(--acento);
-    padding: 10px;
+    padding: 16px;
 
     display: flex;
     flex-direction: row;
@@ -28,7 +28,7 @@ nav .btn {
 
 nav span {
     font-size: 1.8em;
-    color: var(--acento);
+    color: var(--color-secundario);
     margin-left: 10px;
 }
 
@@ -72,7 +72,8 @@ nav #open-menu:checked ~ .link{
     nav {
         flex-direction: row;
         justify-content: space-between;
-        border-bottom: 5px solid var(--color-secundario);
+        /* border-bottom: 5px solid var(--color-secundario); */
+        border-left: 5px solid var(--acento);
     }
     nav label {
         border-left: 0;

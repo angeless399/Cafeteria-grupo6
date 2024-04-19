@@ -1,3 +1,4 @@
+ /* first mobil */
 * {
     padding: 0;
     margin: 0;
@@ -10,7 +11,7 @@
 :root {
     --color-principal: rgb(61, 61, 61);
     --color-secundario: rgb(204, 204, 204);
-    --acento: rgb(245, 211, 16);
+    --acento:rgb(138, 241, 138);
     --transparencia: rgba(61, 61, 61, 0.8);
 }
 
@@ -18,21 +19,27 @@ body {
     margin-top: 100px; 
 }
 
-main.conteiner {
+main.container {
     width: 95%;
     margin: 0 auto;
-    background: pink;
 }
 
-h1 {
-    text-align: center;    
+h1.titulo {
+    text-align: center;
+    margin-bottom: 20px;   
 }
-
+.texto {
+    font-size: 1em;
+    margin: 10px 0;
+    text-indent: 15px;
+}
 @media screen and (min-width: 768px) {
     /* breakpoint para tablet */
    }
    
 @media screen and (min-width: 1024px) {
     /* breakpoint para pc */
+    main.container {
     max-width: 1000px;
+    }
 }
