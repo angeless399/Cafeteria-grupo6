@@ -18,6 +18,21 @@ body {
     margin-top: 100px; 
 }
 
+main.conteiner {
+    width: 95%;
+    margin: 0 auto;
+    background: pink;
+}
+
 h1 {
-    text-align: center;
+    text-align: center;    
+}
+
+@media screen and (min-width: 768px) {
+    /* breakpoint para tablet */
+   }
+   
+@media screen and (min-width: 1024px) {
+    /* breakpoint para pc */
+    max-width: 1000px;
 }

@@ -1,3 +1,4 @@
+ /* first mobil */
 nav {
     width: 100%;
     position: absolute;
@@ -27,7 +28,8 @@ nav .btn {
 
 nav span {
     font-size: 1.8em;
-    color: var(--acento)
+    color: var(--acento);
+    margin-left: 10px;
 }
 
 nav #open-menu {
@@ -53,16 +55,20 @@ nav .link a {
     color: var(--color-secundario);
     text-decoration: none;
     font-size: 1.2em;
-    /* margin-left: 15px; */
     padding: 15px;
     border-top: 1px solid var(--color-secundario);
+
+    display: flex;
+    gap: 10px;
+   
 }
 
 nav #open-menu:checked ~ .link{
     margin-left: 0;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 768px) {
+    /* breakpoint para tablet */
     nav {
         flex-direction: row;
         justify-content: space-between;
@@ -70,6 +76,7 @@ nav #open-menu:checked ~ .link{
     }
     nav label {
         border-left: 0;
+        padding: 21px;
     }
     nav .btn {
         display: none;
@@ -83,12 +90,23 @@ nav #open-menu:checked ~ .link{
         background: var(--color-principal);
     }
 
-nav .link a {
+    nav .link a {
     border-top: 0;
-}
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    }
 
 nav .link a:hover {
     color: var(--acento);
     border-bottom: 5px solid var(--acento);
 }
+}
+
+@media screen and (min-width: 1024px) {
+    /* breakpoint para pc */
+    nav .link a {
+        flex-direction: row;
+        gap: 10px;
+    }
 }
