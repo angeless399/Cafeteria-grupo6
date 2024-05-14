@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/estilos-gral.css">
     <link rel="stylesheet" href="css/menu.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/slide.css">
     <title>Cafeteria</title>
 </head>
 <body>
@@ -35,14 +36,98 @@
        
         <!-- comienza el contenido de cada página -->
         
-        <h1 class="titulo">Inicio - Andres</h1>
-        <h2>contenido a elaborar por cada integrante</h2>
-        <img src="imagenes/cafeteria.jpg" alt="cafeteria" style="width: 100%; height: auto; margin: 20px 0;">
-        <p class="texto">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam, enim magni rerum necessitatibus sit ipsam perferendis quos, porro voluptas deserunt quisquam nesciunt et quod mollitia. Hic unde exercitationem similique vitae?</p>
-        <p class="texto">Recusandae quos molestias harum, corporis mollitia tenetur necessitatibus placeat sint provident saepe sit earum distinctio repudiandae expedita magnam doloremque minus eius atque molestiae quia quo voluptatem! Impedit soluta modi repudiandae?</p>
-        <p class="texto">Omnis magnam veniam voluptas at, aliquam, dolores itaque nihil nostrum et aperiam voluptates praesentium accusantium quae, alias officiis numquam ad ex quod corrupti repellat. Dolores consequatur culpa odit quaerat porro.</p>
-        <p class="texto">Nihil amet quo ab minima, mollitia doloremque laborum, temporibus reprehenderit itaque in modi explicabo non voluptates vitae. Porro corporis corrupti possimus! Ullam asperiores minus ut non distinctio beatae cupiditate laborum!</p>
-        <p class="texto">In, voluptatum consequuntur explicabo dolores cum sit esse quisquam accusantium, minima ab quam atque enim quae assumenda pariatur tenetur ipsam! Accusamus omnis odio, ut rerum assumenda voluptates cum voluptate unde?</p>
+        <div class="slider">
+            <div class="slide-container">
+                <input type="radio" id="1" name="image-slide" hidden />
+                <input type="radio" id="2" name="image-slide" hidden />
+                <input type="radio" id="3" name="image-slide" hidden />
+
+                <div class="slide">
+
+                    <div class="item-slide">
+                        <img src="imagenes/slide1.jpg">
+                        <h1>NUESTRA MEJOR SELECCION</h1>
+                        <div class="item-slide-content">
+                            <h1>CADA GRANO SELECCIONADO
+                                ESCONDE UN MUNDO DE AROMAS
+                                Y SABORES ESPERANDO SER DESCUBIERTO</h1>
+                        </div>
+
+                    </div>
+
+                    <div class="item-slide">
+                        <img src="imagenes/slide2.jpg">
+                        <h1>DESCUBRE EL SABOR UNICO Y AUTENTICO</h1>
+                        <div class="item-slide-content">
+                            <h1>Conocé nuestra amplia variedad<br><br>
+                                <a href="catalogo.html">Catalogo</a><br><br>
+                            </h1>
+                        </div>
+                    </div>
+
+                    <div class="item-slide">
+                        <img src="imagenes/slide3.jpg">
+                        <h1>COMPARTE EL MOMENTO</h1>
+                        <div class="item-slide-content">
+                            <h1>Promociones especiales para compartir<br><br>
+                                <a href="contacto.html">Hace tu reserva</a><br><br>
+                            </h1>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="pagination">
+
+                    <label class="pagination-item" for="1">
+                        <img src="imagenes/slide1.jpg">
+                    </label>
+
+                    <label class="pagination-item" for="2">
+                        <img src="imagenes/slide2.jpg">
+                    </label>
+
+                    <label class="pagination-item" for="3">
+                        <img src="imagenes/slide3.jpg">
+                    </label>
+
+                </div>
+
+            </div>
+            <!-- finaliza contenido -->
+        </div>
+        <div class="sumate">
+            
+            <input type="checkbox" id="open-cv">
+
+            <div class="sumate1">
+                <h1>SUMATE A NUESTRO EQUIPO</h1>
+                <h2>Conviertete en un especialista del buen café</h2><br>
+
+                <label for="open-cv">
+                    <h2>Enviar CV</h2>
+                </label><br>
+                
+            </div>
+            <div class="sumate2"><img src="imagenes/apreton.png"></div>
+
+            <div class="sumate3">
+            <form target="_blank" action="https://formsubmit.co/andresnicolasturko@gmail.com" method="POST" enctype="multipart/form-data">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="apellido" name="apellido" required>
+                
+                    <label for="documento">Documento (PDF):</label><br>
+                    <input type="file" id="documento" name="documento" accept=".pdf" required><br>
+                
+                    <input type="submit" value="Enviar" id="envio">
+                </form>
+            </div>
+
+        </div>
+    </main>
 
         <!-- finaliza contenido -->
         
