@@ -112,7 +112,7 @@
             <div class="sumate2"><img src="imagenes/apreton.png"></div>
 
             <div class="sumate3">
-            <form target="_blank" action="https://formsubmit.co/andresnicolasturko@gmail.com" method="POST" enctype="multipart/form-data">
+                <form método="POST" action="https://formsubmit.co/andresnicolasturko@gmail.com " enctype="multipart/form-data">
                     <label for="nombre">Nombre:</label>
                     <input type="text" id="nombre" name="nombre" required>
                 
@@ -122,7 +122,12 @@
                     <label for="documento">Documento (PDF):</label><br>
                     <input type="file" id="documento" name="documento" accept=".pdf" required><br>
                 
-                    <input type="submit" value="Enviar" id="envio">
+                    <!-- campos de configuración -->
+                <input type="hidden" name="_subject" value="Nuevo Cv enviado">
+                <input type="hidden" name="_captcha" value="false">
+
+                <button type="submit">Enviar</button>
+                    <!-- <input type="submit" value="Enviar" id="envio"> -->
                 </form>
             </div>
 
