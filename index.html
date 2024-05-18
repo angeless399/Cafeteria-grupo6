@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
@@ -16,14 +17,15 @@
     <link rel="stylesheet" href="css/slide.css">
     <title>Cafeteria</title>
 </head>
+
 <body>
     <header>
         <nav>
-            
+
             <input type="checkbox" id="open-menu">
             <label for="open-menu"><i class="fa-solid fa-bars btn"></i><span>Cafetería</span></label>
-                
-           
+
+
             <div class="link">
                 <a href="index.html"><i class="fa-solid fa-house"></i> Bienvenidos</a>
                 <a href="catalogo.html"><i class="fa-solid fa-mug-saucer"></i> Catálogo</a>
@@ -33,9 +35,9 @@
         </nav>
     </header>
     <main class="container">
-       
+
         <!-- comienza el contenido de cada página -->
-        
+
         <div class="slider">
             <div class="slide-container">
                 <input type="radio" id="1" name="image-slide" hidden />
@@ -97,7 +99,7 @@
             <!-- finaliza contenido -->
         </div>
         <div class="sumate">
-            
+
             <input type="checkbox" id="open-cv">
 
             <div class="sumate1">
@@ -107,37 +109,39 @@
                 <label for="open-cv">
                     <h2>Enviar CV</h2>
                 </label><br>
-                
+
             </div>
             <div class="sumate2"><img src="imagenes/apreton.png"></div>
 
             <div class="sumate3">
                 <!-- andresnicolasturko@gmail.com  -->
-                    <form target="_blank" action="https://formsubmit.co/andresnicolasturko@gmail.com" method="POST" enctype="multipart/form-data">
+                <form target="_blank" action="https://formsubmit.co/angeless.399@gmail.com" method="POST"
+                    enctype="multipart/form-data">
                     <label for="nombre">Nombre:</label>
                     <input type="text" id="nombre" name="nombre" required>
-                
+
                     <label for="apellido">Apellido:</label>
                     <input type="text" id="apellido" name="apellido" required>
-                
+
                     <label for="documento">Documento (PDF):</label><br>
                     <input type="file" id="documento" name="documento" accept=".pdf" required><br>
-                
-                    <!-- campos de configuración -->
-                <input type="hidden" name="_subject" value="Nuevo Cv enviado">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://angeless399.github.io/Cafeteria-grupo6/index.html?a=1">
 
-                <button type="submit">Enviar</button>
-                 
+                    <!-- campos de configuración -->
+                    <input type="hidden" name="_subject" value="Nuevo Cv enviado">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next"
+                        value="https://angeless399.github.io/Cafeteria-grupo6/index.html?send">
+
+                    <button type="submit">Enviar</button>
+
                 </form>
             </div>
 
         </div>
     </main>
 
-        <!-- finaliza contenido -->
-        
+    <!-- finaliza contenido -->
+
     </main>
     <footer>
         <img src="imagenes/codoacodo.png" alt="codo a codo">
@@ -146,9 +150,17 @@
             <p>GRUPO 6 - Año: 2024</P>
         </div>
         <div class="integrantes">
-        <p>Andres Turko - Gabriela Miranda</p>
-        <p>Eunice Quispe - María de los Ángeles López</p>
+            <p>Andres Turko - Gabriela Miranda</p>
+            <p>Eunice Quispe - María de los Ángeles López</p>
         </div>
     </footer>
+    <script>
+        let queryStrings = new URLSearchParams(window.location.search);
+        let parametrosGet = Object.fromEntries(queryStrings.entries());
+        if(Object.keys(parametrosGet).length!=0 && Object.keys(parametrosGet)[0]=="send"){
+            alert("Curriculum Enviado");
+        }
+    </script>
 </body>
+
 </html>
