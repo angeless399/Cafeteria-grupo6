@@ -114,8 +114,7 @@
             <div class="sumate2"><img src="imagenes/apreton.png"></div>
 
             <div class="sumate3">
-                <!-- andresnicolasturko@gmail.com  -->
-                <form action="https://formsubmit.co/angeless.399@gmail.com" method="POST"
+                <form action="https://formsubmit.co/andresnicolasturko@gmail.com" method="POST"
                     enctype="multipart/form-data">
                     <label for="nombre">Nombre:</label>
                     <input type="text" id="nombre" name="nombre" required>
@@ -129,8 +128,7 @@
                     <!-- campos de configuración -->
                     <input type="hidden" name="_subject" value="Nuevo Cv enviado">
                     <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next"
-                        value="https://angeless399.github.io/Cafeteria-grupo6/index.html?send">
+                    <input type="hidden" name="_next" value="https://angeless399.github.io/Cafeteria-grupo6/index.html?send">
 
                     <button type="submit">Enviar</button>
 
@@ -155,8 +153,8 @@
         </div>
     </footer>
     <script>
-        let queryStrings = new URLSearchParams(window.location.search);
-        let parametrosGet = Object.fromEntries(queryStrings.entries());
+        let queryStrings = new URLSearchParams(window.location.search); // Se Obtienen los parametros de la url 
+        let parametrosGet = Object.fromEntries(queryStrings.entries()); // se los convierte en un objeto
         // console.log(parametrosGet);
         if(Object.keys(parametrosGet).length!=0 && Object.keys(parametrosGet)[0]=="send"){
             alert("Curriculum Enviado");
