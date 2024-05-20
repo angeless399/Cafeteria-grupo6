@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/estilos-gral.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/reservas.css">
+    <title>Cafeteria</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+
+            <input type="checkbox" id="open-menu">
+            <label for="open-menu"><i class="fa-solid fa-bars btn"></i><span>Cafetería</span></label>
+
+
+            <div class="link">
+                <a href="index.html"><i class="fa-solid fa-house"></i> Bienvenidos</a>
+                <a href="catalogo.html"><i class="fa-solid fa-mug-saucer"></i> Catálogo</a>
+                <a href="nosotros.html"><i class="fa-solid fa-seedling"></i> Nosotros</a>
+                <a href="reservas.html"><i class="fa-solid fa-calendar-days"></i> Reservas</a>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+
+        <!-- comienza el contenido de cada página -->
+        <div class="reserva">
+            
+            <div class="res">
+                <div class="texto">
+                    <h1 class="titulo tit_reserva">COMPARTÍ EL MOMENTO</h1>
+                    <p class="txt_reserva">Contáctanos a través del formulario y hace tu reserva.</p>
+                    <h1 class="titulo tit_reserva">Promociones especiales</h1>
+                    <!-- <p class="txt_reserva">Promociones especiales</p> -->
+                </div>
+                <div class="formulario">
+                    <form action="" method="get" class="form" id="form">
+                        <div class="fecha-hora-local">
+                            <div class="fecha">
+                                <label for="fecha">Fecha </label><input type="date" name="fecha" id="fecha">
+                            </div>
+                            <div class="hora">
+                                <label for="hora">Hora </label><input type="time" name="hora" id="hora">
+                            </div>
+
+                            
+                        </div>
+                        <div class="cantidad">
+                            <label for="cant">Cant. de personas </label><input type="number" min="1" max="99" name="cant" id="cant">
+                        </div>
+                        <div class="local">
+                            <label for="local">Sucursal </label>
+                            <select name="local" id="">
+                                <option value="Avellaneda">Avellaneda</option>
+                                <option value="CABA">CABA</option>
+                                <option value="Lugano">Lugano</option>
+                                <option value="Jujuy">Jujuy</option>
+                            </select>
+                        </div>
+                        <div class="datos-persona">
+                        <label for="nombre">Nombre</label><input type="text" name="nombre" id="nombre">
+                        <label for="email">Email</label><input type="email" name="email" id="email">
+                        </div>
+                        <button type="submit" class="btn-reservas"><strong>ENVIAR RESERVA</strong></button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <!-- finaliza contenido -->
+
+    </main>
+    <footer>
+        <img src="imagenes/codoacodo.png" alt="codo a codo">
+        <div class="curso">
+            <p>Curso: NodeJs - Comisión: 24258 </p>
+            <p>GRUPO 6 - Año: 2024</P>
+        </div>
+        <div class="integrantes">
+            <p>Andres Turko - Gabriela Miranda</p>
+            <p>Eunice Quispe - María de los Ángeles López</p>
+        </div>
+    </footer>
+</body>
+
+</html>
