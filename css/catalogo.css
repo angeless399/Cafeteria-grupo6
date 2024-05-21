@@ -1,0 +1,69 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;800&display=swap'); */
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family: 'Open Sans'; */
+    font-family: "Lato", sans-serif;
+}
+
+.titulo{
+    /* font-family: "Radio Canada Big", sans-serif; */
+    font-size: 1.25em ;
+    /* font-weight: bold; */
+    color: #666;
+    border-bottom: 1px solid #c9c9c9;
+}
+.mostrador{
+    width: 100%;
+    transition: .5s ease;
+}
+.mostrador .fila{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+    /* grid-template-columns: repeat(4, 1fr); */
+    /* gap: 50px; */
+    /* margin-bottom: 40px; */
+}
+
+.mostrador .fila .item{
+    max-width: 100%;
+    /* padding: 30px; */
+    /* height: 250px; */
+    /* border: 2px solid rgba(154, 211, 149, 0.137); */
+    text-align: center;
+    cursor: pointer;
+    transition: .3s;
+}
+.mostrador .fila .item:hover{
+    background-color: #aa834854;
+}
+.contenedor-foto img{
+    height: auto;
+    width: 100%;
+    width: 150px;
+    object-fit: cover;
+}
+.contenedor-comida img{
+    height: auto;
+    width: 100%;
+    margin-top: 50px;
+    width: 150px;
+    object-fit: cover;
+}
+
+.mostrador .fila .item .descripcion{
+    color: #443939;
+    font-weight: bold;
+    font-size: 1.20em;
+}
+.mostrador .fila .item .precio{
+    color: #7c2727;
+    font-weight: bold;
+    font-size: 1em
+}
