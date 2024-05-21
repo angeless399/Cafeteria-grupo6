@@ -73,7 +73,7 @@ div.item-slide {
     align-items: center;
     justify-content: center;
     width: 100%;
-    z-index: 4000;
+    z-index: 1000;
 }
 
 .pagination-item {
