@@ -173,7 +173,7 @@ input[id="3"]:checked~.pagination .pagination-item[for="3"] {
     text-align: center;
 }
 
-.sumate1 label h2 {
+.sumate1 label {
     color: var(--acento);
     background-color: var(--color-principal);
     border-radius: 6px;
@@ -183,7 +183,7 @@ input[id="3"]:checked~.pagination .pagination-item[for="3"] {
     transition: 1s;
 }
 
-.sumate1 label h2:hover {
+.sumate1 label:hover {
     background-color: rgb(108, 103, 103);
 }
 
@@ -233,6 +233,9 @@ input[id="3"]:checked~.pagination .pagination-item[for="3"] {
 }
 
 @media screen and (min-width: 768px) {
+    .sumate {
+        flex-direction: row;
+    }
 
     .item-slide-content {
         display: block;
@@ -262,7 +265,10 @@ input[id="3"]:checked~.pagination .pagination-item[for="3"] {
 }
 
 @media screen and (min-width: 1024px) {
-
+    .sumate {
+        flex-direction: row;
+    }
+    
     .item-slide-content {
         color: var(--color-secundario);
         position: absolute;
