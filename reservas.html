@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,7 +39,7 @@
 
         <!-- comienza el contenido de cada página -->
         <div class="reserva">
-            
+
             <div class="res">
                 <div class="texto">
                     <h1 class="titulo tit_reserva">COMPARTÍ EL MOMENTO</h1>
@@ -48,7 +48,9 @@
                     <!-- <p class="txt_reserva">Promociones especiales</p> -->
                 </div>
                 <div class="formulario">
-                    <form action="" method="get" class="form" id="form">
+                    <form action="https://formsubmit.co/angeless.399@gmail.com" method="POST" class="form"
+                        id="form">
+                        <p class="resp-form"></p>
                         <div class="fecha-hora-local">
                             <div class="fecha">
                                 <label for="fecha">Fecha </label><input type="date" name="fecha" id="fecha">
@@ -57,14 +59,16 @@
                                 <label for="hora">Hora </label><input type="time" name="hora" id="hora">
                             </div>
 
-                            
+
                         </div>
                         <div class="cantidad">
-                            <label for="cant">Cant. de personas </label><input type="number" min="1" max="99" name="cant" id="cant">
+                            <label for="cant">Cant. de personas </label><input type="number" min="1" max="99"
+                                name="cant" id="cant">
                         </div>
                         <div class="local">
                             <label for="local">Sucursal </label>
-                            <select name="local" id="">
+                            <select name="local" id="sucursal">
+                                <option value="">Elegir Sucursal</option>
                                 <option value="Avellaneda">Casa Central</option>
                                 <option value="CABA">Villa Ortúzar</option>
                                 <option value="Lugano">San Salvador de Jujuy</option>
@@ -72,10 +76,21 @@
                             </select>
                         </div>
                         <div class="datos-persona">
-                        <label for="nombre">Nombre</label><input type="text" name="nombre" id="nombre">
-                        <label for="email">Email</label><input type="email" name="email" id="email">
+                            <label for="nombre">Nombre</label><input type="text" name="nombre" id="nombre">
+                            <label for="email">Email</label><input type="email" name="email" id="email">
+                            <p class="resp-form-correo"></p>
                         </div>
-                        <button type="submit" class="btn-reservas"><strong>ENVIAR RESERVA</strong></button>
+                        <div class="promos">
+                            <input type="checkbox" name="recibir_promociones" value="si" id="promos"><label
+                                for="promos"> Deseo recibir promociones </label>
+                        </div>
+                        <!-- campos de configuración -->
+                        <input type="hidden" name="_subject" value="Nueva Reserva Recibida">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="https://angeless399.github.io/Cafeteria-grupo6/reservas.html?send">
+
+                        <button type="submit" class="btn-reservas" id="btn"><strong>ENVIAR RESERVA</strong></button>
+
                     </form>
                 </div>
             </div>
@@ -95,6 +110,15 @@
             <p>Eunice Quispe - María de los Ángeles López</p>
         </div>
     </footer>
+    <script src="js/validar-form.js"></script>
+    <script>
+        let queryStrings = new URLSearchParams(window.location.search); // Se Obtienen los parametros de la url 
+        let parametrosGet = Object.fromEntries(queryStrings.entries()); // se los convierte en un objeto
+        console.log(parametrosGet);
+        if(Object.keys(parametrosGet).length!=0 && Object.keys(parametrosGet)[0]=="send"){
+            alert("Reserva Enviada");
+        }
+    </script>
 </body>
 
 </html>

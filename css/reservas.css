@@ -88,6 +88,25 @@
 
 }
 
+.promos {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.promos label {
+    padding: 0;
+    margin: 0 5px;
+}
+
+.resp-form, .resp-form-correo {
+    color: red;
+    font-weight: bolder;
+    text-align: center;
+}
+
 @media screen and (min-width: 768px) {
     /* breakpoint para tablet */
     .res {
