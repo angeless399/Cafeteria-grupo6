@@ -225,6 +225,7 @@ input[id="3"]:checked~.pagination .pagination-item[for="3"] {
 @media screen and (min-width: 625px) and (max-width: 768px) {
     .sumate {
         flex-direction: row;
+        justify-content: center;
     }
 
     .item-slide h1 {
@@ -235,6 +236,7 @@ input[id="3"]:checked~.pagination .pagination-item[for="3"] {
 @media screen and (min-width: 768px) {
     .sumate {
         flex-direction: row;
+        justify-content: center;
     }
 
     .item-slide-content {
