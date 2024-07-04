@@ -35,6 +35,23 @@
     text-indent: 0;
     text-align: center;
 }
+.regalos {
+    color: var(--color-secundario);
+    text-shadow: 2px 2px 5px #000;
+    font-size: 1em;
+    padding: 0;
+    text-indent: 0;
+    text-align: center;
+}
+
+.alta {
+    color: var(--color-secundario);
+    text-shadow: 2px 2px 5px #000;
+    font-size: 1em;
+    padding: 0;
+    text-indent: 0;
+    text-align: center;
+}
 
 .formulario {
     width: 95%;
@@ -95,6 +112,8 @@
     justify-content: center;
     align-items: center;
 }
+
+
 
 .promos label {
     padding: 0;

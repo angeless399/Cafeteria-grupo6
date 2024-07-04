@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reservas</title>
+    <style>
+        #reservas {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        #reservas div {
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>reservas</h1>
+    <section id="reservas">
+
+    </section>
+
+    <script>
+        fetch('/crud-reservas')
+            .then(response => response.json())
+            .then(data => {
+                const reservas = data;
+                console.log(reservas)
+                const reservasContainer = document.querySelector('#reservas');
+
+                reservas.forEach(reservas => {
+                    const reservasElement = document.createElement('div');
+                    reservasElement.innerHTML = `
+                        <h2>${reservas.mail}</h2>
+                        <h2>${reservas.usuario}</h2>
+                        <h2>${reservas.fecha}</h2>
+                        <p>${reservas.hora}</p>
+                        <ul>
+                            <li>Id: ${reservas.id}</li>
+                            <li>personas: ${reservas.personas}</li>
+                            <li>sucursal: ${reservas.sucursal}</li>
+                            
+                        </ul>
+                        <strong>${reservas.promociones}</strong>
+                        
+                    `;
+                    reservasContainer.appendChild(reservasElement);
+                });
+            });
+    </script>
+</body>
+</html>

@@ -32,6 +32,7 @@
                 <a href="catalogo.html"><i class="fa-solid fa-mug-saucer"></i> Catálogo</a>
                 <a href="nosotros.html"><i class="fa-solid fa-seedling"></i> Nosotros</a>
                 <a href="reservas.html"><i class="fa-solid fa-calendar-days"></i> Reservas</a>
+                <a href="login.html"><i class="fa-solid fa-user"></i>Login</a>
             </div>
         </nav>
     </header>
@@ -43,15 +44,22 @@
             <div class="res">
                 <div class="texto">
                     <h1 class="titulo tit_reserva">COMPARTÍ EL MOMENTO</h1>
-                    <p class="txt_reserva">Contáctanos a través del formulario y hace tu reserva.</p>
-                    <h1 class="titulo tit_reserva">Promociones especiales</h1>
-                    <!-- <p class="txt_reserva">Promociones especiales</p> -->
+                    <p class="txt_reserva">Registrate para que podamos hacerte llegar las mejores ofertas</p>
+                    <h1 class="txt_reserva">Además con tu registración y realizando tu primer reserva, recibirás una
+                        sorpresa de regalo(*)</h1>
+                    <div class="regalos">
+                        <p>(*) Sujeto a disponibilidad, la entrega del regalo se realizará al momento de concretar la
+                            primer reserva.</p>
+                    </div>
+
                 </div>
                 <div class="formulario">
                     <form action="https://formsubmit.co/andresnicolasturko@gmail.com" method="POST" class="form"
                         id="form">
                         <p class="resp-form"></p>
-                        <div class="fecha-hora-local">
+
+                        <h1 class="titulo tit_reserva">INGRESA AQUÍ</h1>
+                        <!-- <div class="fecha-hora-local">
                             <div class="fecha">
                                 <label for="fecha">Fecha </label><input type="date" name="fecha" id="fecha">
                             </div>
@@ -74,22 +82,26 @@
                                 <option value="Lugano">San Salvador de Jujuy</option>
                                 <option value="Jujuy">Espacio Konex</option>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="datos-persona">
-                            <label for="nombre">Nombre</label><input type="text" name="nombre" id="nombre">
+                            <!-- <label for="nombre">Nombre</label><input type="text" name="nombre" id="nombre"> -->
                             <label for="email">Email</label><input type="email" name="email" id="email">
+                            <label for="clave">Clave</label><input type="pass" name="pass" id="pass">
                             <p class="resp-form-correo"></p>
+
                         </div>
-                        <div class="promos">
+                       <!-- <div class="promos">
                             <input type="checkbox" name="recibir_promociones" value="si" id="promos"><label
                                 for="promos"> Deseo recibir promociones </label>
-                        </div>
+                        </div> -->
                         <!-- campos de configuración -->
                         <input type="hidden" name="_subject" value="Nueva Reserva Recibida">
                         <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="https://angeless399.github.io/Cafeteria-grupo6/reservas.html?send">
+                        <input type="hidden" name="_next"
+                            value="https://angeless399.github.io/Cafeteria-grupo6/reservas.html?send">
 
-                        <button type="submit" class="btn-reservas" id="btn"><strong>ENVIAR RESERVA</strong></button>
+                        <button type="submit" class="btn-reservas" id="btn"><strong>INGRESAR</strong></button>
+                        <p class="regalos">Si querés registrarte <a href="registro.html" class="alta">hacé click aquí</a> </p>
 
                     </form>
                 </div>
@@ -115,7 +127,7 @@
         let queryStrings = new URLSearchParams(window.location.search); // Se Obtienen los parametros de la url 
         let parametrosGet = Object.fromEntries(queryStrings.entries()); // se los convierte en un objeto
         console.log(parametrosGet);
-        if(Object.keys(parametrosGet).length!=0 && Object.keys(parametrosGet)[0]=="send"){
+        if (Object.keys(parametrosGet).length != 0 && Object.keys(parametrosGet)[0] == "send") {
             alert("Reserva Enviada");
         }
     </script>
