@@ -10,14 +10,14 @@
 }
 
 .titulo{
-    /* font-family: "Radio Canada Big", sans-serif; */
+    width: 95%;
+    margin: auto;
     font-size: 1.25em ;
-    /* font-weight: bold; */
     color: #666;
     border-bottom: 1px solid #c9c9c9;
 }
 .mostrador{
-    width: 100%;
+    width: 95%;
     transition: .5s ease;
 }
 .mostrador .fila{
