@@ -2,6 +2,8 @@ import express from 'express';
 import pool from './config/db.js';
 import 'dotenv/config';
 
+import cors from 'cors';
+
 // Import required modules
 
 // Create an Express app
@@ -10,9 +12,10 @@ const app = express();
 const puerto = process.env.PORT || 3000;
 
 // Enable JSON parsing for request bodies
-app.use(express.json());
+app.use(express.json({type: "*/*"}));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use(cors());
 
 // Read all booking
 app.get('/crud-reservas', async (req, res) => {
@@ -63,10 +66,12 @@ app.post('/crud-reservas', async (req, res) => {
     const sql = `INSERT INTO reservas SET ?`;
 
     try {
+        // await console.log("llega algo")
+        // await console.log(req.body)
         const connection = await pool.getConnection()
         const [rows] = await connection.query(sql, [reserva]);
         connection.release();
-        res.send(`
+        await res.send(`
             <h1>reserva creada con id: ${rows.insertId}</h1>
         `);
     } catch (error) {
