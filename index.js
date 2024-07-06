@@ -12,7 +12,7 @@ const app = express();
 const puerto = process.env.PORT || 3000;
 
 // Enable JSON parsing for request bodies
-app.use(express.json({type: "*/*"}));
+app.use(express.json({ type: "*/*" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(cors());
@@ -45,7 +45,7 @@ app.get('/crud-reservas/:id', async (req, res) => {
                 FROM reservas
                 JOIN usuarios ON reservas.usuario = usuarios.id
                 WHERE reservas.id = ?`;
-                
+
 
     try {
         const connection = await pool.getConnection()
@@ -58,24 +58,21 @@ app.get('/crud-reservas/:id', async (req, res) => {
     }
 });
 
-// Create a new booking
+// Crear nueva reserva
 app.post('/crud-reservas', async (req, res) => {
-
     const reserva = req.body;
-
     const sql = `INSERT INTO reservas SET ?`;
-
     try {
-        // await console.log("llega algo")
-        // await console.log(req.body)
         const connection = await pool.getConnection()
         const [rows] = await connection.query(sql, [reserva]);
         connection.release();
-        await res.send(`
-            <h1>reserva creada con id: ${rows.insertId}</h1>
-        `);
+        await res.json({
+            mensaje: 'Reserva Registrada', //envia mensaje al front
+        })
     } catch (error) {
-        res.sendStatus(500).send('Internal server error')
+        res.json({
+            mensaje: 'error al guardar reserva', //envia mensaje al front
+        })
     }
 });
 
