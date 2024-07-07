@@ -8,7 +8,7 @@ formRegistro.addEventListener("submit", async (e) => {
     let pass = formRegistro.pass.value
     let promos = formRegistro.promos.value
 
-    objUsuario = { usuario: nombre, mail: email, contrasena: pass, promociones: promos, tipo: 2 }
+    objUsuario = {usuario: nombre, mail: email, contrasena: pass, promociones: promos, tipo: 2 }
 
     jsonUsuario = JSON.stringify(objUsuario)
 
@@ -21,6 +21,5 @@ formRegistro.addEventListener("submit", async (e) => {
     })
         .then(res => res.json()) // convierte la respuesta del backend en json, equivalente a json.parse()
         .then(resp => alert(resp.mensaje)) // muesta lo recibido mensaje recibido del backend
-
-
+        document.querySelector('#form-registro').reset(); //limpia el formulario
 })

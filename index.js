@@ -1,20 +1,14 @@
 // Import required modules
 import express from 'express';
-import pool from './api/config/db.js';
+import pool from './config/db.js';
 import 'dotenv/config';
 import cors from 'cors';
-
-//Fix para __direname
-import path from 'path';
-import {fileURLToPath} from 'url';
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-//importo funciones de autenticacion
-import {metodos as autenticacion} from './api/controllers/autenticacion.js'
+import bcryptjs from 'bcryptjs';
 
 // Create an Express app
 const app = express();
 
+// Definir puerto
 const puerto = process.env.PORT || 3000;
 
 // Enable JSON parsing for request bodies
@@ -23,17 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(cors());
 
-//rutas
-// app.get('/login', (req, res) => {res.sendFile(__dirname + '/public/login.html')})
-// app.get('/registro', (req,res) => {res.sendFile(__dirname + '/public/registro.html')})
-// app.get('/admin', (req,res) => {res.sendFile(__dirname + '/public/admin.html')})
-
-app.post('/registro.html', autenticacion.registro)
-app.post('/login', autenticacion.login)
-
-
-
-// Read all booking
+// Obtener todas al reservas
 app.get('/crud-reservas', async (req, res) => {
     const sql = `SELECT reservas.id, usuarios.usuario, usuarios.mail, usuarios.promociones,
                 reservas.fecha, reservas.hora, reservas.personas, reservas.sucursal
@@ -53,7 +37,7 @@ app.get('/crud-reservas', async (req, res) => {
 
 });
 
-// Read a specific booking
+// Obtener una reserva especifica
 app.get('/crud-reservas/:id', async (req, res) => {
     const id = req.params.id
     const sql = `SELECT reservas.id, usuarios.usuario, usuarios.mail, usuarios.promociones,
@@ -86,13 +70,13 @@ app.post('/crud-reservas', async (req, res) => {
             mensaje: 'Reserva Registrada', //envia mensaje al front
         })
     } catch (error) {
-        res.json({
+        await res.json({
             mensaje: 'error al guardar reserva', //envia mensaje al front
         })
     }
 });
 
-// Update a specific booking
+// Actualizar una reserva
 app.put('/crud-reservas/:id', async (req, res) => {
     const id = req.params.id;
     const reserva = req.body;
@@ -113,7 +97,7 @@ app.put('/crud-reservas/:id', async (req, res) => {
 
 });
 
-// Delete a specific booking
+// Borrar una reserva
 app.delete('/crud-reservas/:id', async (req, res) => {
     const id = req.params.id;
     const sql = `DELETE FROM reservas WHERE id = ?`;
@@ -131,26 +115,44 @@ app.delete('/crud-reservas/:id', async (req, res) => {
     }
 });
 
-// Create a new user
-app.post('/usuarios', async (req, res) => {
+// Registro de usuario
+app.post('/registro.html', async (req, res) => {
+    const usuario = req.body.usuario
+    const mail = req.body.mail
+    const contrasena = req.body.contrasena
+    const promociones = req.body.promociones
 
-    const usuario = req.body;
+    if (!usuario || !mail || !contrasena) {
+        res.json({
+            mensaje: "Los campos estan incompletos"
+        })
+    } else {
+        const salt = await bcryptjs.genSalt(5)
+        const hashPassword = await bcryptjs.hash(contrasena, salt)
 
-    const sql = `INSERT INTO usuarios SET ?`;
-
-    try {
-        const connection = await pool.getConnection()
-        const [rows] = await connection.query(sql, [usuario]);
-        connection.release();
-        res.send(`
-            <h1>usuario creado con id: ${rows.insertId}</h1>
-        `);
-    } catch (error) {
-        res.sendStatus(500).send('Internal server error')
+        const nuevoUsuario = {
+            usuario, mail, contrasena: hashPassword, promociones, tipo: 2
+        }
+        const sql = `INSERT INTO usuarios SET ?`;
+        try {
+            const connection = await pool.getConnection()
+            const [rows] = await connection.query(sql, [nuevoUsuario]);
+            connection.release();
+            res.json({
+                mensaje: 'Usuario Registrado', //envia mensaje al front
+            })
+        } catch (error) {
+            res.json({
+                mensaje: 'error al registrar usuario', //envia mensaje al front
+            })
+        }
     }
 });
 
-// Update a specific user
+//login
+// app.post('/login.html', autenticacion.login)
+
+// Actualizar usuario
 app.put('/usuarios/:id', async (req, res) => {
     const id = req.params.id;
     const usuario = req.body;
@@ -171,7 +173,7 @@ app.put('/usuarios/:id', async (req, res) => {
 
 });
 
-// Delete a specific user
+// Borrar usuario
 app.delete('/usuarios/:id', async (req, res) => {
     const id = req.params.id;
     const sql = `DELETE FROM usuarios WHERE id = ?`;

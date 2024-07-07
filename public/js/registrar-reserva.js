@@ -9,9 +9,9 @@ formulario.addEventListener('submit', (event) => {
     let hora = formulario.hora.value
     let personas = formulario.cant.value
     let sucursal = formulario.local.value
-    let nombre = formulario.nombre.value
-    let mail = formulario.email.value
-    let promos = formulario.promos.value
+    // let nombre = formulario.nombre.value
+    // let mail = formulario.email.value
+    // let promos = formulario.promos.value
 
     let paqDatos = { fecha: fecha, hora: hora, personas: personas, sucursal: sucursal, usuario: 1 }
 
