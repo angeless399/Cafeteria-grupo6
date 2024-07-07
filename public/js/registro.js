@@ -1,5 +1,4 @@
 formRegistro = document.forms['form-registro']
-console.log(formRegistro);
 
 formRegistro.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -22,7 +21,9 @@ formRegistro.addEventListener("submit", async (e) => {
         .then(res => res.json()) // convierte la respuesta del backend en json, equivalente a json.parse()
         .then(resp => {
                 alert(resp.mensaje);
-                window.location.href = resp.redirect;
+                if(resp.redirect){
+                    window.location.href = resp.redirect;
+                }
         }) // muesta el mensaje recibido del backend y redirecciono al login.html para que inicie sesion
         .catch(error => alert(`error ${error}`)) // alerta por error
        

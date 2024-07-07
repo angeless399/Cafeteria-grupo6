@@ -45,8 +45,6 @@ app.get('/crud-reservas/:id', async (req, res) => {
                 FROM reservas
                 JOIN usuarios ON reservas.usuario = usuarios.id
                 WHERE reservas.id = ?`;
-
-
     try {
         const connection = await pool.getConnection()
         const [rows] = await connection.query(sql, [id]);
@@ -151,7 +149,37 @@ app.post('/registro.html', async (req, res) => {
 });
 
 //login
-// app.post('/login.html', autenticacion.login)
+app.post('/login.html', async (req, res) => {
+    console.log(req.body)
+    const mail = req.body.mail
+    const contrasena = req.body.contrasena
+    if (!mail || !contrasena) {
+        res.json({
+            mensaje: "Los campos estan incompletos"
+        })
+    } else {
+        const sql =`SELECT * FROM usuarios WHERE mail = ?`;
+        try {
+            const connection = await pool.getConnection()
+            const [rows] = await connection.query(sql, [mail]);
+            // connection.release();
+            if(!rows[0]){
+                res.json({
+                    mensaje: "El usuario no exite"
+                })
+            }else{
+                console.log('El usuario EXISTE', rows[0].contrasena)
+                // res.json({
+                //     mensaje: "El usuario exite"
+                // })
+            }
+            // console.log("Usuario --> ", rows[0])
+            // res.json(rows[0]);
+        } catch (error) {
+            res.send(500).send('Internal server error')
+        }
+    }
+})
 
 // Actualizar usuario
 app.put('/usuarios/:id', async (req, res) => {
