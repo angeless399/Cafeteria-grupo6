@@ -140,6 +140,7 @@ app.post('/registro.html', async (req, res) => {
             connection.release();
             res.json({
                 mensaje: 'Usuario Registrado', //envia mensaje al front
+                redirect: './login.html'
             })
         } catch (error) {
             res.json({

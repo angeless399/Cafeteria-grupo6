@@ -20,6 +20,11 @@ formRegistro.addEventListener("submit", async (e) => {
         body: jsonUsuario
     })
         .then(res => res.json()) // convierte la respuesta del backend en json, equivalente a json.parse()
-        .then(resp => alert(resp.mensaje)) // muesta lo recibido mensaje recibido del backend
-        document.querySelector('#form-registro').reset(); //limpia el formulario
+        .then(resp => {
+                alert(resp.mensaje);
+                window.location.href = resp.redirect;
+        }) // muesta el mensaje recibido del backend y redirecciono al login.html para que inicie sesion
+        .catch(error => alert(`error ${error}`)) // alerta por error
+       
+       
 })
