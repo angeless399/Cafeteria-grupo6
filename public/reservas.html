@@ -49,8 +49,7 @@
                  
                 </div>
                 <div class="formulario">
-                    <form action="" method="POST" class="form"
-                        id="form">
+                    <form action="" method="POST" class="form" id="form">
                         <p class="resp-form"></p>
                         <div class="fecha-hora-local">
                             <div class="fecha">
@@ -65,9 +64,8 @@
                                 name="cant" id="cant">
                         </div>
                         <div class="local">
-                            <label>Sucursales </label>
+                            <label for="sucursal">Sucursales </label>
                             <select name="local" id="sucursal">
-                                <option value="" disabled>Elegir Sucursal</option>
                                 <option value="1">Casa Central - Avellaneda</option>
                                 <option value="2">Villa Ortúzar - CABA</option>
                                 <option value="3">Teatro Mitre - Jujuy</option>
@@ -80,13 +78,9 @@
                             <p class="resp-form-correo"></p>
                         </div>
                         <div class="promos">
-                            <input type="checkbox" name="promos" value="si" id="promos"><label
-                                for="promos"> Deseo recibir promociones </label>
+                            <input type="checkbox" name="promos" value="si" id="promos">
+                            <label for="promos"> Deseo recibir promociones </label>
                         </div>
-                        <!-- campos de configuración -->
-                        <input type="hidden" name="_subject" value="Nueva Reserva Recibida">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="https://angeless399.github.io/Cafeteria-grupo6/reservas.html?send">
 
                         <button class="btn-reservas" id="btn"><strong>ENVIAR RESERVA</strong></button>
 
@@ -110,15 +104,6 @@
         </div>
     </footer>
     <script src="js/validar-form.js"></script>
-    <script>
-        let queryStrings = new URLSearchParams(window.location.search); // Se Obtienen los parametros de la url 
-        let parametrosGet = Object.fromEntries(queryStrings.entries()); // se los convierte en un objeto
-        console.log(parametrosGet);
-        if(Object.keys(parametrosGet).length!=0 && Object.keys(parametrosGet)[0]=="send"){
-            alert("Reserva Enviada");
-            // document.querySelector(".resp-form").innerHTML = '';
-        }
-    </script>
     <script src="./js/registrar-reserva.js"></script>
 </body>
 

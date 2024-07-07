@@ -1,10 +1,16 @@
+// Import required modules
 import express from 'express';
-import pool from './config/db.js';
+import pool from './api/config/db.js';
 import 'dotenv/config';
-
 import cors from 'cors';
 
-// Import required modules
+//Fix para __direname
+import path from 'path';
+import {fileURLToPath} from 'url';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+//importo funciones de autenticacion
+import {metodos as autenticacion} from './api/controllers/autenticacion.js'
 
 // Create an Express app
 const app = express();
@@ -16,6 +22,16 @@ app.use(express.json({ type: "*/*" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(cors());
+
+//rutas
+// app.get('/login', (req, res) => {res.sendFile(__dirname + '/public/login.html')})
+// app.get('/registro', (req,res) => {res.sendFile(__dirname + '/public/registro.html')})
+// app.get('/admin', (req,res) => {res.sendFile(__dirname + '/public/admin.html')})
+
+app.post('/registro.html', autenticacion.registro)
+app.post('/login', autenticacion.login)
+
+
 
 // Read all booking
 app.get('/crud-reservas', async (req, res) => {
