@@ -128,6 +128,7 @@ app.post('/registro.html', async (req, res) => {
             mensaje: "Los campos estan incompletos"
         })
     } else {
+        // se encripta la contraseña 
         const salt = await bcryptjs.genSalt(5)
         const hashPassword = await bcryptjs.hash(contrasena, salt)
 
@@ -182,14 +183,19 @@ app.post('/login.html', async (req, res) => {
                         mensaje: "Usuario o contraseña incorrecta"
                     })
                 }else{
+
+                    //se crea el token
                     const token = jsonwebtoken.sign({usuario: mail},process.env.JWT_SECRET,{expiresIn:process.env.JWT_EXPIRATION});
                         
-                    console.log("token: ",  token)
+                    // console.log("token: ",  token)
                     
+                    //se configura la cookie
                    const cookieOption = {
                     expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 1000),
                     path: "/"
                    } 
+
+                   //se envia la cookie al usuario
                    res.cookie("jwt",token,cookieOption);
                    res.send({mensaje:"Usuario Loggeado",redirect:"/admin.html"})  
             }
