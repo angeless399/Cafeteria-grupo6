@@ -4,6 +4,9 @@ import pool from './config/db.js';
 import 'dotenv/config';
 import cors from 'cors';
 import bcryptjs from 'bcryptjs';
+import jsonwebtoken from 'jsonwebtoken';
+
+// dotenv.config();
 
 // Create an Express app
 const app = express();
@@ -12,7 +15,7 @@ const app = express();
 const puerto = process.env.PORT || 3000;
 
 // Enable JSON parsing for request bodies
-app.use(express.json({ type: "*/*" }));
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(cors());
@@ -158,25 +161,43 @@ app.post('/login.html', async (req, res) => {
             mensaje: "Los campos estan incompletos"
         })
     } else {
-        const sql =`SELECT * FROM usuarios WHERE mail = ?`;
+        const sql = `SELECT * FROM usuarios WHERE mail = ?`;
         try {
             const connection = await pool.getConnection()
             const [rows] = await connection.query(sql, [mail]);
-            // connection.release();
-            if(!rows[0]){
+            connection.release();
+            if (!rows[0]) {
                 res.json({
                     mensaje: "El usuario no exite"
                 })
-            }else{
-                console.log('El usuario EXISTE', rows[0].contrasena)
-                // res.json({
-                //     mensaje: "El usuario exite"
-                // })
+            } else {
+                
+                // console.log('El usuario EXISTE', rows[0].contrasena);
+                //el usuario existe entonces
+                //comparo la pass que recibo del front con la guardada en la db
+                const loginCorrecto = await bcryptjs.compare(contrasena,rows[0].contrasena);
+                console.log(loginCorrecto);
+                if(!loginCorrecto){
+                    res.json({
+                        mensaje: "Usuario o contraseña incorrecta"
+                    })
+                }else{
+                    const token = jsonwebtoken.sign({usuario: mail},process.env.JWT_SECRET,{expiresIn:process.env.JWT_EXPIRATION});
+                        
+                    console.log("token: ",  token)
+                    
+                   const cookieOption = {
+                    expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 1000),
+                    path: "/"
+                   } 
+                   res.cookie("jwt",token,cookieOption);
+                   res.send({mensaje:"Usuario Loggeado",redirect:"/admin.html"})  
             }
-            // console.log("Usuario --> ", rows[0])
-            // res.json(rows[0]);
-        } catch (error) {
-            res.send(500).send('Internal server error')
+
+            }
+        }
+        catch (error) {
+            res.sendStatus(500).send('Internal server error')
         }
     }
 })

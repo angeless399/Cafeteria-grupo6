@@ -14,7 +14,7 @@ formLogin.addEventListener("submit", async (e) => {
 
     console.log(jsonUsuario)
 
-    const res = await fetch('http://localhost:3000/login.html', {
+    const res = await fetch('http://localhost:3000/login.html',{
         method: "POST",
         headers: {
             "Content-Type": "application/json"
