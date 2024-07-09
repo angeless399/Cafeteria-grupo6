@@ -13,7 +13,7 @@ import jsonwebtoken from 'jsonwebtoken'; //genera token para poder operar en el 
 
 import cookieParser from 'cookie-parser'; // permite leer cookies desde el servidor, lo utilizamos para la autorización
 
-import {metodos as autorizacion} from "./middlewares/autorizacion.js";
+import {metodos as autorizacion} from './middlewares/autorizacion.js'
 
 // Create an Express app
 const app = express();
@@ -176,6 +176,7 @@ app.post('/login.html', async (req, res) => {
             const connection = await pool.getConnection()
             const [rows] = await connection.query(sql, [mail]);
             connection.release();
+            // console.log(rows[0].tipo)
             if (!rows[0]) {
                 res.json({
                     mensaje: "El usuario no exite"
@@ -203,7 +204,7 @@ app.post('/login.html', async (req, res) => {
                     expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 1000),
                     path: "/"
                    } 
-
+                   
                    //se envia la cookie al usuario
                    res.cookie("jwt",token,cookieOption);
                 // res.send({mensaje:"Usuario Loggeado",redirect:"/admin.html"})
@@ -258,7 +259,7 @@ app.delete('/usuarios/:id', async (req, res) => {
     }
 });
 
-app.get('/admin',  async(req,res)=>{
+app.get('/admin',autorizacion.soloAdmin, async(req,res)=>{
     const sql = `SELECT reservas.id, usuarios.usuario, usuarios.mail, usuarios.promociones,
                 reservas.fecha, reservas.hora, reservas.personas, reservas.sucursal
                 FROM reservas

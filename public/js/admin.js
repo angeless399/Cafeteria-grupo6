@@ -32,8 +32,8 @@ const obtenerDatos = async() => {
         contenedor.innerHTML = reservas
 
 
-    } catch (error) {
-        console.log(error)
+    } catch(error) {
+        console.log("ocurrio un error, estoy en admin.js")
     }
 }
 
