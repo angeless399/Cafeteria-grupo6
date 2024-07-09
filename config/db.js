@@ -4,7 +4,7 @@ import { createPool } from 'mysql2/promise';
 const pool = createPool({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'maradona1986',
     database: 'caferarte',
     connectionLimit: 5 // Adjust the connection limit as per your requirements
 });
