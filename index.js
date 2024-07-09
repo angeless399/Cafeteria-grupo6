@@ -166,6 +166,8 @@ app.post('/registro.html', async (req, res) => {
     const contrasena = req.body.contrasena
     const promociones = req.body.promociones
 
+    console.log({usuario});
+
     if (!usuario || !mail || !contrasena) {
         res.json({
             mensaje: "Los campos estan incompletos"
@@ -178,6 +180,7 @@ app.post('/registro.html', async (req, res) => {
         const nuevoUsuario = {
             usuario, mail, contrasena: hashPassword, promociones, tipo: 2
         }
+        console.log(nuevoUsuario);
         const sql = `INSERT INTO usuarios SET ?`;
         try {
             const connection = await pool.getConnection()
@@ -212,7 +215,7 @@ app.post('/login.html', async (req, res) => {
             connection.release();
             if (!rows[0]) {
                 res.json({
-                    mensaje: "El usuario no exite"
+                    mensaje: "El usuario no existe"
                 })
             } else {
 
@@ -246,7 +249,7 @@ app.post('/login.html', async (req, res) => {
             }
         }
         catch (error) {
-            res.sendStatus(500).send('Internal server error')
+            res.Status(500).send('Internal server error')
         }
     }
 })
@@ -263,11 +266,17 @@ app.put('/usuarios/:id', async (req, res) => {
         const [rows] = await connection.query(sql, [usuario, id]);
         connection.release();
         console.log(rows)
-        res.send(`
-            <h1>usuario con id: ${id} actualizado</h1>
-        `);
+        if (rows.affectedRows === 0) {
+            //si no encontro ningun registro
+            res.status(404).json({
+                mensaje:'No existe el usuario requerido', //envia mensaje al front
+            });
+        }else{
+        res.status(200).json({
+           mensaje: `el usuario seleccionado fue actualizado`
+        });}
     } catch (error) {
-        res.sendStatus(500).send('Internal server error')
+        res.Status(500).send('Internal server error')
     }
 
 });
