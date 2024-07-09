@@ -1,12 +1,19 @@
 // Import required modules
 import express from 'express';
 import pool from './config/db.js';
-import 'dotenv/config';
-import cors from 'cors';
-import bcryptjs from 'bcryptjs';
-import jsonwebtoken from 'jsonwebtoken';
 
-// dotenv.config();
+import 'dotenv/config';//???
+
+import cors from 'cors';//permite la comunicacion entre front y back
+
+//modulos para registro y login
+import bcryptjs from 'bcryptjs'; //encripta contraseña
+
+import jsonwebtoken from 'jsonwebtoken'; //genera token para poder operar en el sistema, el cual se guarda en una cookie
+
+import cookieParser from 'cookie-parser'; // permite leer cookies desde el servidor, lo utilizamos para la autorización
+
+import {metodos as autorizacion} from "./middlewares/autorizacion.js";
 
 // Create an Express app
 const app = express();
@@ -14,12 +21,14 @@ const app = express();
 // Definir puerto
 const puerto = process.env.PORT || 3000;
 
-// Enable JSON parsing for request bodies
+// Configuraciones
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(cors());
+app.use(cookieParser())
 
+//Rutas
 // Obtener todas al reservas
 app.get('/crud-reservas', async (req, res) => {
     const sql = `SELECT reservas.id, usuarios.usuario, usuarios.mail, usuarios.promociones,
@@ -177,7 +186,7 @@ app.post('/login.html', async (req, res) => {
                 //el usuario existe entonces
                 //comparo la pass que recibo del front con la guardada en la db
                 const loginCorrecto = await bcryptjs.compare(contrasena,rows[0].contrasena);
-                console.log(loginCorrecto);
+                // console.log(loginCorrecto);
                 if(!loginCorrecto){
                     res.json({
                         mensaje: "Usuario o contraseña incorrecta"
@@ -197,7 +206,9 @@ app.post('/login.html', async (req, res) => {
 
                    //se envia la cookie al usuario
                    res.cookie("jwt",token,cookieOption);
-                   res.send({mensaje:"Usuario Loggeado",redirect:"/admin.html"})  
+                // res.send({mensaje:"Usuario Loggeado",redirect:"/admin.html"})
+                //OJO mandar un json en el send tambien funciona(revisar diferencias .send y .json) 
+                res.json({mensaje:"Usuario Loggeado",redirect:"/admin.html"})  
             }
 
             }
@@ -246,6 +257,26 @@ app.delete('/usuarios/:id', async (req, res) => {
         res.sendStatus(500).send('Internal server error')
     }
 });
+
+app.get('/admin',  async(req,res)=>{
+    const sql = `SELECT reservas.id, usuarios.usuario, usuarios.mail, usuarios.promociones,
+                reservas.fecha, reservas.hora, reservas.personas, reservas.sucursal
+                FROM reservas
+                JOIN usuarios ON reservas.usuario = usuarios.id
+                ORDER By reservas.fecha DESC`;
+
+    try {
+        const connection = await pool.getConnection()
+        const [rows] = await connection.query(sql);
+        connection.release();
+        res.json(rows);
+
+    } catch (error) {
+        res.send(500).send('Internal server error')
+    }
+
+});
+
 
 // Start the server
 app.listen(puerto, () => {
