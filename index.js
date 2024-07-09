@@ -209,7 +209,7 @@ app.post('/login.html', async (req, res) => {
                    res.cookie("jwt",token,cookieOption);
                 // res.send({mensaje:"Usuario Loggeado",redirect:"/admin.html"})
                 //OJO mandar un json en el send tambien funciona(revisar diferencias .send y .json) 
-                res.json({mensaje:"Usuario Loggeado",redirect:"/admin.html"})  
+                res.json({mensaje:"Usuario Loggeado",redirect:"/catalogo.html"})  
             }
 
             }
