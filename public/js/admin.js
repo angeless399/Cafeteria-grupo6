@@ -9,9 +9,10 @@ document.querySelector('#btn-logout').addEventListener('click', () => {
 
 const obtenerDatos = async() => {
     try {
+        console.log("estoy ingrese a la funcion obtener datos");
         const respuesta = await fetch('/admin');
         const datos = await respuesta.json();
-        // console.log(datos)
+        console.log(datos)
 
         const contenedor = document.querySelector('#contReservas');
         let reservas = '';
@@ -29,15 +30,16 @@ const obtenerDatos = async() => {
                     `
         });
 
-        contenedor.innerHTML = reservas
+        contenedor.innerHTML = reservas;
 
 
-    } catch(error) {
-        console.log("ocurrio un error, estoy en admin.js")
+    }catch(error) {
+        console.log("ocurrio un error, estoy en admin.js");
+        window.location.href = '/';
     }
-}
+};
 
-obtenerDatos()
+obtenerDatos();
 
 
 // fetch('/admin.html')

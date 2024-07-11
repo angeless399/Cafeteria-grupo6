@@ -209,7 +209,10 @@ app.post('/login.html', async (req, res) => {
                    res.cookie("jwt",token,cookieOption);
                 // res.send({mensaje:"Usuario Loggeado",redirect:"/admin.html"})
                 //OJO mandar un json en el send tambien funciona(revisar diferencias .send y .json) 
-                res.json({mensaje:"Usuario Loggeado",redirect:"/catalogo.html"})  
+                // res.json({mensaje:"Usuario Loggeado",redirect:"/catalogo.html"})  
+                // res.json({mensaje:"Usuario Loggeado"}) 
+                res.json({mensaje:"Usuario Loggeado",redirect:"/admin.html"})   
+                
             }
 
             }
@@ -219,6 +222,37 @@ app.post('/login.html', async (req, res) => {
         }
     }
 })
+
+
+
+app.get('/admin',autorizacion.soloAdmin, async(req,res)=>{
+    const sql = `SELECT reservas.id, usuarios.usuario, usuarios.mail, usuarios.promociones,
+                reservas.fecha, reservas.hora, reservas.personas, reservas.sucursal
+                FROM reservas
+                JOIN usuarios ON reservas.usuario = usuarios.id
+                ORDER By reservas.fecha DESC`;
+
+    try {
+        const connection = await pool.getConnection()
+        const [rows] = await connection.query(sql);
+        connection.release();
+        res.json(rows);
+        // res.json({rows,redirect:"/admin.html"})  
+
+    } catch (error) {
+        res.send(500).send('Internal server error')
+    }
+
+});
+
+app.get('/admin.html',autorizacion.soloAdmin, async(req,res)=>{
+    try {
+        console.log('veamos que sucede')
+    }catch(error){
+        console.log(error)
+    }
+})
+
 
 // Actualizar usuario
 app.put('/usuarios/:id', async (req, res) => {
@@ -258,27 +292,6 @@ app.delete('/usuarios/:id', async (req, res) => {
         res.sendStatus(500).send('Internal server error')
     }
 });
-
-app.get('/admin',autorizacion.soloAdmin, async(req,res)=>{
-    const sql = `SELECT reservas.id, usuarios.usuario, usuarios.mail, usuarios.promociones,
-                reservas.fecha, reservas.hora, reservas.personas, reservas.sucursal
-                FROM reservas
-                JOIN usuarios ON reservas.usuario = usuarios.id
-                ORDER By reservas.fecha DESC`;
-
-    try {
-        const connection = await pool.getConnection()
-        const [rows] = await connection.query(sql);
-        connection.release();
-        res.json(rows);
-
-    } catch (error) {
-        res.send(500).send('Internal server error')
-    }
-
-});
-
-
 // Start the server
 app.listen(puerto, () => {
     console.log('Server started on port 3000');
